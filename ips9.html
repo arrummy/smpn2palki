@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPS KELAS 9 SMPN2 PKL LAMPAM</title>
+    <style>
+        /* CSS Umum dan Responsif (Sama seperti sebelumnya, disederhanakan) */
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; margin: 20px; background-color: #f4f4f9; color: #333; font-size: 16px; }
+        .container { max-width: 900px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        h1, h2 { color: #004d40; text-align: center; }
+        h2 { margin-top: 40px; padding-bottom: 10px; border-bottom: 2px solid #004d40; }
+        .question-list { list-style: none; padding: 0; }
+        .question-item { margin-bottom: 25px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #fafafa; position: relative; }
+        .question-text { font-weight: bold; margin-bottom: 10px; display: block; }
+        .options-list { list-style: none; margin-left: 0; padding-left: 0; }
+        .options-list li { margin-bottom: 5px; }
+        .options-list label { display: block; cursor: pointer; padding: 3px 0; }
+        .options-list input[type="radio"] { margin-right: 8px; }
+        
+        /* Style yang tidak relevan dengan jawaban dihilangkan */
+        .story-problem { border-left: 5px solid #ff9800; padding-left: 10px; font-style: italic; }
+
+        /* Style untuk Login dan Tombol Submit */
+        #login-screen, #result-screen { text-align: center; padding: 50px 20px; }
+        input[type="text"], input[type="password"] { padding: 10px; margin: 8px 0; width: 80%; max-width: 300px; border: 1px solid #ccc; border-radius: 4px; display: block; margin-left: auto; margin-right: auto;}
+        button { padding: 10px 20px; background-color: #00796b; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; }
+        button:hover { background-color: #004d40; }
+        #submit-button { margin-top: 30px; display: block; width: 100%; max-width: 250px; margin-left: auto; margin-right: auto; }
+        .note { background-color: #fff3e0; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #ffcc80; }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 600px) {
+            body { font-size: 14px; margin: 10px; }
+            .container { padding: 15px; }
+            h1 { font-size: 1.5em; }
+            h2 { font-size: 1.2em; }
+            .question-item { padding: 10px; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kuis 50 Soal Gabungan</h1>
+
+        <div id="login-screen">
+            <h2>Masuk untuk Memulai Kuis</h2>
+            <p>Silakan masukkan **Nama Anda** sebelum memulai. Data nilai akan dikirim ke server.</p>
+            <input type="text" id="username" placeholder="Nama Lengkap Anda">
+            <button onclick="login()">Mulai Kuis</button>
+            <p class="note" id="login-error" style="display:none; color: red; margin-top: 15px;">Nama harus diisi!</p>
+        </div>
+
+        <div id="quiz-screen" style="display:none;">
+            <p class="note">Selamat datang, <strong id="display-username"></strong>! Silakan kerjakan **50 soal** berikut dengan teliti.</p>
+
+            <form id="quiz-form">
+                
+                <script id="correct-answers" type="application/json">
+                    {
+                        "q1": "c", "q2": "c", "q3": "c", "q4": "b", "q5": "c", "q6": "c", "q7": "c", "q8": "c", "q9": "c", "q10": "d",
+                        "q11": "c", "q12": "c", "q13": "b", "q14": "c", "q15": "c", "q16": "c", "q17": "c", 
+                        "q18": "c", "q19": "c", "q20": "c", "q21": "c", "q22": "b", "q23": "c", "q24": "d", "q25": "b", "q26": "b",
+                        "q27": "c", "q28": "c", "q29": "c", "q30": "c", "q31": "c", "q32": "c", "q33": "c", "q34": "c",
+                        "q35": "c", "q36": "c", "q37": "c", "q38": "b", "q39": "c", "q40": "c", "q41": "b", "q42": "c",
+                        "q43": "c", "q44": "c", "q45": "b", "q46": "c", "q47": "c", "q48": "b", "q49": "c", "q50": "c"
+                    }
+                </script>
+                
+                <h2>I. Lingkungan Hidup, Biotik, Abiotik & Pencemaran (17 Soal)</h2>
+                <ol class="question-list" style="counter-reset: item 0;">
+                    <li class="question-item"><span class="question-text">1. Unsur biotik yang berperan penting...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q1" value="a"> a. Dekomposer</label></li><li><label><input type="radio" name="q1" value="b"> b. Konsumen Sekunder</label></li><li><label><input type="radio" name="q1" value="c"> c. Produsen (Tumbuhan Hijau)</label></li><li><label><input type="radio" name="q1" value="d"> d. Konsumen Primer</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">2. Faktor abiotik yang berfungsi sebagai pelarut universal...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q2" value="a"> a. Suhu</label></li><li><label><input type="radio" name="q2" value="b"> b. Tanah</label></li><li><label><input type="radio" name="q2" value="c"> c. Air</label></li><li><label><input type="radio" name="q2" value="d"> d. Cahaya Matahari</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">3. Hubungan antara jamur dan alga...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q3" value="a"> a. Predasi</label></li><li><label><input type="radio" name="q3" value="b"> b. Simbiosis Parasitisme</label></li><li><label><input type="radio" name="q3" value="c"> c. Simbiosis Mutualisme</label></li><li><label><input type="radio" name="q3" value="d"> d. Komensalisme</label></li></ul>
+                    </li>
+                     <li class="question-item story-problem"><span class="question-text">4. Seorang ahli biologi mengamati adaptasi kaktus di gurun...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q4" value="a"> a. Keasaman tanah (pH) dan kandungan garam</label></li><li><label><input type="radio" name="q4" value="b"> b. Suhu ekstrem dan kelembaban udara yang rendah</label></li><li><label><input type="radio" name="q4" value="c"> c. Intensitas cahaya dan $\text{CO}_2$</label></li><li><label><input type="radio" name="q4" value="d"> d. Ketinggian tempat dan angin kencang</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">5. Interaksi antara organisme hidup (biotik) dengan faktor non-hidup (abiotik)...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q5" value="a"> a. Konsumen dan Produsen</label></li><li><label><input type="radio" name="q5" value="b"> b. Abiotik dengan Abiotik</label></li><li><label><input type="radio" name="q5" value="c"> c. Biotik dengan Abiotik</label></li><li><label><input type="radio" name="q5" value="d"> d. Simbiosis Mutualisme</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">6. Pencemaran udara yang menyebabkan hujan asam...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q6" value="a"> a. Metana $(\text{CH}_4)$ dan $\text{CO}_2$</label></li><li><label><input type="radio" name="q6" value="b"> b. Ozon $(\text{O}_3)$ dan Klorofluorokarbon (CFC)</label></li><li><label><input type="radio" name="q6" value="c"> c. Sulfur dioksida $(\text{SO}_2)$ dan Nitrogen oksida $(\text{NO}_x)$</label></li><li><label><input type="radio" name="q6" value="d"> d. Karbon monoksida (CO) dan Timbal (Pb)</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">7. Sebuah danau mengalami perubahan warna menjadi hijau pekat...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q7" value="a"> a. Biomagnifikasi</label></li><li><label><input type="radio" name="q7" value="b"> b. Sedimentasi</label></li><li><label><input type="radio" name="q7" value="c"> c. Eutrofikasi</label></li><li><label><input type="radio" name="q7" value="d"> d. Aktivitas dekomposer berlebihan</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">8. Salah satu dampak paling merugikan dari pencemaran tanah...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q8" value="a"> a. Peningkatan laju fotosintesis tumbuhan</label></li><li><label><input type="radio" name="q8" value="b"> b. Penurunan suhu permukaan tanah</label></li><li><label><input type="radio" name="q8" value="c"> c. Matinya mikroorganisme tanah yang berperan sebagai pengurai</label></li><li><label><input type="radio" name="q8" value="d"> d. Timbulnya hujan asam</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">9. Penipisan lapisan ozon di stratosfer...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q9" value="a"> a. Karbon Dioksida $(\text{CO}_2)$</label></li><li><label><input type="radio" name="q9" value="b"> b. Sulfur Oksida $(\text{SO}_x)$</label></li><li><label><input type="radio" name="q9" value="c"> c. Klorofluorokarbon (CFC)</label></li><li><label><input type="radio" name="q9" value="d"> d. Timbal (Pb)</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">10. Masuknya atau dimasukkannya makhluk hidup...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q10" value="a"> a. Kerusakan Lingkungan</label></li><li><label><input type="radio" name="q10" value="b"> b. Dampak Lingkungan</label></li><li><label><input type="radio" name="q10" value="c"> c. Polutan</label></li><li><label><input type="radio" name="q10" value="d"> d. Pencemaran Lingkungan</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">11. Pemerintah sedang gencar melaksanakan program reboisasi...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q11" value="a"> a. Pencemaran suara dan pencemaran udara</label></li><li><label><input type="radio" name="q11" value="b"> b. Pencemaran air dan pencemaran tanah</label></li><li><label><input type="radio" name="q11" value="c"> c. Pencemaran udara dan pencemaran tanah</label></li><li><label><input type="radio" name="q11" value="d"> d. Pencemaran panas dan pencemaran cahaya</label></li></ul>
+                    </li>
+                     <li class="question-item"><span class="question-text">12. Upaya teknologi paling efektif untuk mengolah limbah cair domestik...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q12" value="a"> a. Lubang Biopori</label></li><li><label><input type="radio" name="q12" value="b"> b. Tempat Pembuangan Akhir (TPA)</label></li><li><label><input type="radio" name="q12" value="c"> c. Instalasi Pengolahan Air Limbah (IPAL)</label></li><li><label><input type="radio" name="q12" value="d"> d. Konversi energi terbarukan</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text story-problem">13. Seorang petani melihat hutan di dekat desanya ditebang habis...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q13" value="a"> a. Udara dan Suara</label></li><li><label><input type="radio" name="q13" value="b"> b. Tanah oleh erosi dan Air oleh sedimentasi</label></li><li><label><input type="radio" name="q13" value="c"> c. Udara oleh gas dan Air oleh deterjen</label></li><li><label><input type="radio" name="q13" value="d"> d. Tanah oleh limbah B3 dan Udara oleh asap</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">14. Di Desa Sukamaju, masalah sampah plastik sangat parah...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q14" value="a"> a. Jumlah sampah yang harus dibuang ke TPA meningkat</label></li><li><label><input type="radio" name="q14" value="b"> b. Kebutuhan energi untuk daur ulang (Recycle) meningkat</label></li><li><label><input type="radio" name="q14" value="c"> c. Jumlah total sampah yang dihasilkan sejak dari sumber berkurang</label></li><li><label><input type="radio" name="q14" value="d"> d. Semua sampah plastik dapat didaur ulang menjadi produk baru</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">15. Kota X adalah kota industri yang mengalami tingkat pencemaran udara...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q15" value="a"> a. Limbah cair dan padat</label></li><li><label><input type="radio" name="q15" value="b"> b. Asap hitam dan partikulat debu (PM)</label></li><li><label><input type="radio" name="q15" value="c"> c. Emisi $\text{CO}_2$ dan $\text{SO}_2$ dari pembakaran bahan bakar fosil</label></li><li><label><input type="radio" name="q15" value="d"> d. Pencemaran suara</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text story-problem">16. Sebuah pembangkit listrik batu bara membuang sisa air pendingin...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q16" value="a"> a. Pencemaran kimia</label></li><li><label><input type="radio" name="q16" value="b"> b. Pencemaran udara</label></li><li><label><input type="radio" name="q16" value="c"> c. Pencemaran termal (panas)</label></li><li><label><input type="radio" name="q16" value="d"> d. Eutrofikasi</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">17. Konsep pembangunan yang berupaya memenuhi kebutuhan generasi sekarang...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q17" value="a"> a. Eksploitasi Sumber Daya</label></li><li><label><input type="radio" name="q17" value="b"> b. Konservasi Sumber Daya</label></li><li><label><input type="radio" name="q17" value="c"> c. Pembangunan Berkelanjutan (Sustainable Development)</label></li><li><label><input type="radio" name="q17" value="d"> d. Reklamasi Lingkungan</label></li></ul>
+                    </li>
+                </ol>
+
+                <h2>II. Kolonialisme, Kebijakan, dan Perlawanan (17 Soal)</h2>
+                <ol class="question-list" style="counter-reset: item 17;">
+                    <li class="question-item"><span class="question-text">18. Salah satu kebijakan paling terkenal yang digagas oleh Gubernur Jenderal Herman Willem Daendels...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q18" value="a"> a. Jalur Kereta Api Trans-Sumatera</label></li><li><label><input type="radio" name="q18" value="b"> b. Sistem Tanam Paksa (Cultuurstelsel)</label></li><li><label><input type="radio" name="q18" value="c"> c. Jalan Raya Pos (Groote Postweg) dari Anyer hingga Panarukan</label></li><li><label><input type="radio" name="q18" value="d"> d. Sistem Sewa Tanah (Landrente)</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">19. Gagasan pokok kebijakan Tanam Paksa (Cultuurstelsel)...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q19" value="a"> a. Menerapkan sistem liberal dengan kebebasan petani menanam apa pun</label></li><li><label><input type="radio" name="q19" value="b"> b. Mewajibkan petani menyewakan tanahnya kepada pemerintah kolonial dengan sistem pembayaran uang tunai</label></li><li><label><input type="radio" name="q19" value="c"> c. Mewajibkan penduduk menanam tanaman ekspor tertentu, seperti kopi, tebu, dan nila, yang hasilnya wajib diserahkan kepada pemerintah kolonial</label></li><li><label><input type="radio" name="q19" value="d"> d. Membangun pabrik gula modern di setiap karesidenan di Jawa</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">20. Thomas Stamford Raffles, yang menjabat sebagai Letnan Gubernur Jenderal Inggris...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q20" value="a"> a. Mengembalikan peran feodal priyayi Jawa sebagai penguasa tanah</label></li><li><label><input type="radio" name="q20" value="b"> b. Meningkatkan produksi tebu dan kopi untuk pasar Eropa</label></li><li><label><input type="radio" name="q20" value="c"> c. Menjadikan petani sebagai pemilik tanah dan pemungut pajak bagi pemerintah, mirip sistem di India</label></li><li><label><input type="radio" name="q20" value="d"> d. Mempercepat pembangunan infrastruktur dengan mewajibkan kerja rodi</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">21. Pada tahun 1845, Desa Purbalingga di Jawa Tengah dilanda bencana kelaparan hebat...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q21" value="a"> a. Kerja Paksa (Rodi) Daendels</label></li><li><label><input type="radio" name="q21" value="b"> b. Sistem Sewa Tanah Raffles</label></li><li><label><input type="radio" name="q21" value="c"> c. Tanam Paksa (Cultuurstelsel) Van den Bosch</label></li><li><label><input type="radio" name="q21" value="d"> d. Penerapan Undang-Undang Agraria 1870</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">22. Buku *Max Havelaar* yang ditulis oleh Eduard Douwes Dekker (Multatuli)...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q22" value="a"> a. Keberhasilan pembangunan jalur kereta api di Jawa</label></li><li><label><input type="radio" name="q22" value="b"> b. Ketidakadilan dan penderitaan rakyat pribumi akibat penyimpangan pelaksanaan Tanam Paksa</label></li><li><label><input type="radio" name="q22" value="c"> c. Dampak positif dari kebijakan Sewa Tanah Raffles</label></li><li><label><input type="radio" name="q22" value="d"> d. Sejarah Perang Diponegoro dan taktik gerilya Pangeran Diponegoro</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">23. Perang Diponegoro (1825-1830) atau Perang Jawa...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q23" value="a"> a. Kewajiban menanam kopi dan tebu secara besar-besaran di wilayah Kesultanan Yogyakarta</label></li><li><label><input type="radio" name="q23" value="b"> b. Peristiwa penangkapan Tuanku Imam Bonjol oleh Belanda</label></li><li><label><input type="radio" name="q23" value="c"> c. Campur tangan Belanda dalam urusan internal keraton Yogyakarta dan pembangunan jalan di atas makam leluhur Diponegoro</label></li><li><label><input type="radio" name="q23" value="d"> d. Diberlakukannya Undang-Undang Agraria 1870 yang merugikan bangsawan Jawa</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">24. Selama Perang Jawa (1825-1830), pasukan Pangeran Diponegoro...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q24" value="a"> a. Perang Parit</label></li><li><label><input type="radio" name="q24" value="b"> b. Taktik Benteng Stelsel</label></li><li><label><input type="radio" name="q24" value="c"> c. Perang Total</label></li><li><label><input type="radio" name="q24" value="d"> d. Perang Gerilya</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">25. Perlawanan Tuanku Imam Bonjol di Minangkabau (Perang Padri, 1821-1837)...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q25" value="a"> a. Perebutan jalur perdagangan rempah-rempah di pelabuhan Padang</label></li><li><label><input type="radio" name="q25" value="b"> b. Konflik antara kaum Padri (ulama reformis) dan kaum Adat (bangsawan dan pemimpin tradisional)</label></li><li><label><input type="radio" name="q25" value="c"> c. Penolakan terhadap kebijakan Tanam Paksa di Sumatera Barat</label></li><li><label><input type="radio" name="q25" value="d"> d. Perintah pembangunan jalan tanpa kompensasi lahan di Minangkabau</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">26. Pada tahun 1870, parlemen Belanda mengeluarkan *Suiker Wet* (Undang-Undang Gula)...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q26" value="a"> a. Pemerintah kolonial melarang semua perusahaan asing menyewa tanah di Jawa</label></li><li><label><input type="radio" name="q26" value="b"> b. Kewajiban petani untuk menanam tebu dihilangkan dan pabrik-pabrik gula milik pemerintah akan dijual secara bertahap kepada pihak swasta</label></li><li><label><input type="radio" name="q26" value="c"> c. Penduduk Jawa diwajibkan membeli gula dari pabrik milik pemerintah saja</label></li><li><label><input type="radio" name="q26" value="d"> d. Menghapus semua pajak tanah bagi petani yang menanam tebu</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">27. Peristiwa perlawanan rakyat Bali yang dikenal sebagai **Puputan Margarana** (1946)...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q27" value="a"> a. Penolakan terhadap kebijakan Tanam Paksa di Bali</label></li><li><label><input type="radio" name="q27" value="b"> b. Peristiwa penangkapan tokoh agama di Bali oleh pemerintah kolonial</label></li><li><label><input type="radio" name="q27" value="c"> c. Keputusan Belanda untuk membentuk Negara Indonesia Timur (NIT) yang tidak mengakui kedaulatan RI atas Bali</label></li><li><label><input type="radio" name="q27" value="d"> d. Pembangunan pelabuhan tanpa izin di wilayah keramat Bali</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">28. Gubernur Jenderal Daendels memerintahkan pembangunan Jalan Raya Pos...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q28" value="a"> a. Monopoli Perdagangan</label></li><li><label><input type="radio" name="q28" value="b"> b. Sistem Sewa Tanah</label></li><li><label><input type="radio" name="q28" value="c"> c. Kerja Paksa (Rodi)</label></li><li><label><input type="radio" name="q28" value="d"> d. Tanam Paksa</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">29. Salah satu penyimpangan yang sering terjadi dalam pelaksanaan Tanam Paksa...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q29" value="a"> a. Petani diizinkan menanam tanaman wajib melebihi batas yang ditentukan</label></li><li><label><input type="radio" name="q29" value="b"> b. Kelebihan hasil panen wajib (batig slot) selalu dikembalikan kepada petani</label></li><li><label><input type="radio" name="q29" value="c"> c. Bagian tanah yang digunakan untuk tanaman wajib melebihi batas 1/5 dari lahan yang ditetapkan</label></li><li><label><input type="radio" name="q29" value="d"> d. Semua tanaman ekspor yang ditanam menjadi milik petani sepenuhnya</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text story-problem">30. Jenderal De Kock, salah satu pemimpin Belanda, menerapkan taktik **Benteng Stelsel**...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q30" value="a"> a. Memperkuat benteng keraton Yogyakarta dan Surakarta</label></li><li><label><input type="radio" name="q30" value="b"> b. Memaksa Diponegoro untuk menyerah melalui perundingan damai</label></li><li><label><input type="radio" name="q30" value="c"> c. Memutus jalur logistik dan komunikasi pasukan Pangeran Diponegoro</label></li><li><label><input type="radio" name="q30" value="d"> d. Menciptakan zona aman bagi petani untuk menanam kopi</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">31. Setelah berjuang selama lima tahun dengan taktik gerilya yang efektif...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q31" value="a"> a. Memaksa Belanda mencabut kebijakan Tanam Paksa di seluruh Jawa</label></li><li><label><input type="radio" name="q31" value="b"> b. Menyebabkan penularan penyakit kolera di kalangan rakyat Jawa</label></li><li><label><input type="radio" name="q31" value="c"> c. Mengakhiri perlawanan fisik rakyat Jawa yang terorganisir di bawah pimpinan karismatik</label></li><li><label><input type="radio" name="q31" value="d"> d. Mendorong lahirnya gerakan Politik Etis di Belanda</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text story-problem">32. Setelah *Suiker Wet* 1870 diberlakukan, investor swasta Eropa dapat menyewa lahan secara bebas...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q32" value="a"> a. Peningkatan kelas priyayi yang diangkat menjadi pengawas pabrik</label></li><li><label><input type="radio" name="q32" value="b"> b. Terjadinya eksodus besar-besaran petani ke luar Jawa</label></li><li><label><input type="radio" name="q32" value="c"> c. Timbulnya sistem buruh tani yang dipekerjakan oleh perkebunan swasta</label></li><li><label><input type="radio" name="q32" value="d"> d. Penurunan drastis produksi gula di Hindia Belanda</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">33. Pada akhir abad ke-19, muncul kesadaran di kalangan elit Belanda...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q33" value="a"> a. Pax Neerlandica</label></li><li><label><input type="radio" name="q33" value="b"> b. Politik Pintu Terbuka (Open Door Policy)</label></li><li><label><input type="radio" name="q33" value="c"> c. Politik Etis (Ethische Politiek)</label></li><li><label><input type="radio" name="q33" value="d"> d. Sistem Sewa Tanah</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">34. Meskipun perlawanan fisik yang dipimpin Tuanku Imam Bonjol di Sumatera Barat...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q34" value="a"> a. Menggunakan benteng pertahanan yang permanen dan berlapis</label></li><li><label><input type="radio" name="q34" value="b"> b. Mengandalkan pertempuran laut (maritim)</label></li><li><label><input type="radio" name="q34" value="c"> c. Menerapkan taktik Perang Gerilya di hutan dan perbukitan</label></li><li><label><input type="radio" name="q34" value="d"> d. Menggunakan persenjataan modern yang didatangkan dari Inggris</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">35. Organisasi pergerakan nasional yang didirikan oleh Dr. Sutomo...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q35" value="a"> a. Sarekat Islam (SI)</label></li><li><label><input type="radio" name="q35" value="b"> b. Partai Nasional Indonesia (PNI)</label></li><li><label><input type="radio" name="q35" value="c"> c. Budi Utomo (BU)</label></li><li><label><input type="radio" name="q35" value="d"> d. Perhimpunan Indonesia (PI)</label></li></ul>
+                    </li>
+                    </ol>
+
+                <h2>III. Pergerakan Nasionalisme (16 Soal)</h2>
+                <ol class="question-list" style="counter-reset: item 35;">
+                    <li class="question-item"><span class="question-text">36. Organisasi Sarekat Islam (SI) yang awalnya bernama Sarekat Dagang Islam (SDI)...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q36" value="a"> a. Melakukan perjuangan bersenjata melawan penjajah Belanda</label></li><li><label><input type="radio" name="q36" value="b"> b. Mencapai kemerdekaan penuh melalui jalur parlemen di Belanda</label></li><li><label><input type="radio" name="q36" value="c"> c. Menghimpun para pedagang pribumi Muslim untuk bersaing dengan pedagang asing (terutama Tionghoa)</label></li><li><label><input type="radio" name="q36" value="d"> d. Mendirikan sekolah dan lembaga pendidikan modern bagi seluruh rakyat pribumi</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">37. Perhimpunan Indonesia (PI) yang berpusat di Belanda terkenal dengan semangatnya yang **non-kooperatif**...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q37" value="a"> a. Bersedia bekerja sama dengan pemerintah Belanda asalkan kemerdekaan diberikan secara bertahap</label></li><li><label><input type="radio" name="q37" value="b"> b. Melakukan perundingan dan mengirimkan wakil ke parlemen Belanda untuk mendapatkan hak-hak politik</label></li><li><label><input type="radio" name="q37" value="c"> c. Menolak segala bentuk kerja sama dengan pemerintah kolonial Belanda karena dianggap merugikan perjuangan nasional</label></li><li><label><input type="radio" name="q37" value="d"> d. Mendirikan partai politik berbasis massa yang bertujuan untuk menggulingkan kekuasaan Belanda secara kekerasan</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">38. Pada Kongres Pemuda II tahun 1928, para pemuda Indonesia dari berbagai latar belakang suku...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q38" value="a"> a. Kepentingan politik Jawa yang ingin mendominasi pergerakan nasional</label></li><li><label><input type="radio" name="q38" value="b"> b. Pengakuan akan satu tanah air, satu bangsa, dan satu bahasa Indonesia sebagai dasar kemerdekaan</label></li><li><label><input type="radio" name="q38" value="c"> c. Tuntutan agar Belanda segera memberikan otonomi daerah yang luas kepada Indonesia</label></li><li><label><input type="radio" name="q38" value="d"> d. Protes terhadap larangan penggunaan bahasa Belanda di sekolah-sekolah rakyat</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">39. Seorang guru bernama Raden bekerja di Sekolah Rakyat...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q39" value="a"> a. Indische Partij</label></li><li><label><input type="radio" name="q39" value="b"> b. Muhammadiyah</label></li><li><label><input type="radio" name="q39" value="c"> c. Taman Siswa</label></li><li><label><input type="radio" name="q39" value="d"> d. Sekolah Budi Utomo</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text story-problem">40. Ki Hajar Dewantara mendirikan Taman Siswa sebagai perlawanan kultural...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q40" value="a"> a. Meningkatkan kemampuan berbahasa Belanda di kalangan pribumi</label></li><li><label><input type="radio" name="q40" value="b"> b. Membentuk sekolah elit yang setara dengan sekolah bangsawan Eropa</label></li><li><label><input type="radio" name="q40" value="c"> c. Menumbuhkan jiwa nasionalisme dan harga diri bangsa melalui pendidikan berbasis kebudayaan sendiri</label></li><li><label><input type="radio" name="q40" value="d"> d. Memperoleh subsidi dana pendidikan dari pemerintah kolonial</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">41. Sarekat Islam (SI) sempat mengalami perpecahan menjadi SI Putih dan SI Merah...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q41" value="a"> a. Liberalisme</label></li><li><label><input type="radio" name="q41" value="b"> b. Komunisme</label></li><li><label><input type="radio" name="q41" value="c"> c. Nasionalisme Murni</label></li><li><label><input type="radio" name="q41" value="d"> d. Fasisme</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">42. Pada tahun 1927, Ir. Soekarno mendirikan Partai Nasional Indonesia (PNI)...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q42" value="a"> a. Hanya menerima anggota dari kalangan priyayi dan bangsawan Jawa saja</label></li><li><label><input type="radio" name="q42" value="b"> b. Menganggap Belanda sebagai mitra yang dapat diajak kerja sama dalam parlemen</label></li><li><label><input type="radio" name="q42" value="c"> c. Berusaha mencapai kemerdekaan dengan kekuatan sendiri dan menolak segala bantuan dari pemerintah kolonial</label></li><li><label><input type="radio" name="q42" value="d"> d. Mengutamakan perjuangan melalui jalur pendidikan dan budaya, seperti yang dilakukan oleh Budi Utomo</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">43. Perhimpunan Indonesia (PI) di Belanda mengubah namanya dari Indische Vereeniging...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q43" value="a"> a. Mulai menyadari pentingnya memajukan pendidikan bagi seluruh rakyat Indonesia</label></li><li><label><input type="radio" name="q43" value="b"> b. Lebih fokus pada penguatan ekonomi pedagang pribumi di Eropa</label></li><li><label><input type="radio" name="q43" value="c"> c. Mengubah orientasi perjuangan dari sifat kedaerahan menjadi bersifat nasional dan kemerdekaan</label></li><li><label><input type="radio" name="q43" value="d"> d. Mulai bekerjasama dengan pemerintah kolonial Belanda untuk mendapatkan konsesi politik</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">44. Meskipun Budi Utomo (BU) awalnya bersifat kedaerahan (Jawa dan Madura)...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q44" value="a"> a. BU berhasil memimpin pertempuran melawan Belanda di Yogyakarta</label></li><li><label><input type="radio" name="q44" value="b"> b. BU adalah organisasi pertama yang secara terang-terangan menuntut kemerdekaan penuh dari Belanda</label></li><li><label><input type="radio" name="q44" value="c"> c. BU adalah pelopor organisasi modern yang mendorong kesadaran dan kebangkitan sebagai bangsa terjajah melalui pendidikan</label></li><li><label><input type="radio" name="q44" value="d"> d. BU memiliki anggota yang sebagian besar berasal dari kalangan buruh pabrik dan petani</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">45. Partai Nasional Indonesia (PNI) yang dipimpin oleh Soekarno menggunakan slogan yang sangat terkenal...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q45" value="a"> a. Kaum intelektual dan priyayi yang menjadi pemimpin pergerakan nasional</label></li><li><label><input type="radio" name="q45" value="b"> b. Seluruh rakyat kecil (petani, buruh, pedagang kecil) yang hidup dalam kemiskinan akibat penjajahan</label></li><li><label><input type="radio" name="q45" value="c"> c. Ideologi perjuangan yang berlandaskan ajaran agama Islam yang murni</label></li><li><label><input type="radio" name="q45" value="d"> d. Sistem pemerintahan yang menerapkan demokrasi liberal secara penuh</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">46. Pada Kongres Pemuda II, lagu **'Indonesia Raya'** yang diciptakan oleh Wage Rudolf Supratman...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q46" value="a"> a. Isinya menceritakan tentang kejayaan kerajaan-kerajaan Nusantara di masa lalu</label></li><li><label><input type="radio" name="q46" value="b"> b. Lagu tersebut mendorong pemuda untuk melakukan aksi kekerasan terhadap Belanda</label></li><li><label><input type="radio" name="q46" value="c"> c. Lagu tersebut berhasil mengukuhkan identitas nasional dan menumbuhkan semangat persatuan antar suku yang berbeda</label></li><li><label><input type="radio" name="q46" value="d"> d. Lagu tersebut diizinkan oleh Belanda untuk dinyanyikan di seluruh sekolah kolonial</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">47. Organisasi Budi Utomo (BU) yang didirikan oleh para mahasiswa STOVIA...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q47" value="a"> a. Pendirian bank nasional untuk membantu permodalan pedagang pribumi</label></li><li><label><input type="radio" name="q47" value="b"> b. Pembentukan partai politik yang menuntut kemerdekaan penuh melalui parlemen</label></li><li><label><input type="radio" name="q47" value="c"> c. Kebutuhan akan *studiefonds* (dana pendidikan) untuk membantu pemuda pribumi melanjutkan studi ke Eropa</label></li><li><label><input type="radio" name="q47" value="d"> d. Pelaksanaan sistem kerja paksa untuk pembangunan infrastruktur di Jawa</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">48. Sarekat Islam (SI) di bawah kepemimpinan H.O.S. Tjokroaminoto mengalami perkembangan anggota...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q48" value="a"> a. Sarekat Islam didukung penuh oleh pemerintah kolonial Belanda</label></li><li><label><input type="radio" name="q48" value="b"> b. Asas organisasi yang berlandaskan Islam dan kepentingan ekonomi rakyat kecil sangat menarik bagi mayoritas penduduk pribumi</label></li><li><label><input type="radio" name="q48" value="c"> c. Hanya menerima anggota dari kalangan priyayi dan bangsawan yang terpelajar</label></li><li><label><input type="radio" name="q48" value="d"> d. Berhasil memenangkan perang melawan Belanda di luar Jawa</label></li></ul>
+                    </li>
+                    <li class="question-item story-problem"><span class="question-text">49. Organisasi pergerakan nasional seringkali terbagi menjadi dua kelompok besar, yaitu **kooperatif**...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q49" value="a"> a. Menolak bekerjasama dengan Belanda dan menuntut kemerdekaan dengan kekuatan sendiri</label></li><li><label><input type="radio" name="q49" value="b"> b. Membangun pasukan bersenjata di wilayah pedalaman dan melakukan perang gerilya</label></li><li><label><input type="radio" name="q49" value="c"> c. Berpartisipasi dalam dewan-dewan perwakilan rakyat bentukan Belanda, seperti Volksraad, untuk menyampaikan tuntutan secara damai</label></li><li><label><input type="radio" name="q49" value="d"> d. Hanya fokus pada perbaikan sosial dan budaya, tanpa ada tujuan politik sama sekali</label></li></ul>
+                    </li>
+                    <li class="question-item"><span class="question-text">50. Sumpah Pemuda 1928 memiliki makna yang sangat mendalam...</span>
+                        <ul class="options-list"><li><label><input type="radio" name="q50" value="a"> a. Menjadikan bahasa Belanda sebagai bahasa resmi pergerakan nasional</label></li><li><label><input type="radio" name="q50" value="b"> b. Mengubah semua organisasi kedaerahan menjadi satu partai politik yang radikal</label></li><li><label><input type="radio" name="q50" value="c"> c. Menciptakan konsensus nasional tentang pentingnya persatuan di atas kepentingan suku, agama, dan golongan (SARA)</label></li><li><label><input type="radio" name="q50" value="d"> d. Mewajibkan semua pemuda untuk melanjutkan pendidikan ke jenjang yang lebih tinggi</label></li></ul>
+                    </li>
+                </ol>
+
+                <button type="submit" id="submit-button">Selesaikan Kuis & Kirim Jawaban ke Server</button>
+                <p id="submission-status" style="margin-top: 10px; font-weight: bold;"></p>
+            </form>
+        </div>
+
+         <div id="result-screen" style="display:none;">
+            <h2>Kuis Selesai!</h2>
+            <p>Terima kasih, <strong id="final-username"></strong>. Jawaban Anda sudah dikirimkan ke server melalui **save_score.php**.</p>
+            <p>Skor Anda: <strong id="final-score"></strong> dari 50</p>
+            <hr>
+            <button onclick="window.location.href = 'daftar_nilai.php';">Lihat Daftar Nilai Lengkap (daftar_nilai.php)</button>
+            <button onclick="location.reload()">Ulangi Kuis</button>
+        </div>
+    </div>
+
+    <script>
+        // Variabel Global
+        let userName = '';
+        // Diarahkan ke script yang Mbah siapkan:
+        const SUBMIT_URL = 'https://smpn2palki.ct.ws/gmni/save_score.php'; 
+        
+        // 1. FUNGSI LOGIN (PINTU MASUK)
+        function login() {
+            userName = document.getElementById('username').value.trim();
+            const errorElement = document.getElementById('login-error');
+
+            if (userName === '') {
+                errorElement.style.display = 'block';
+                return;
+            }
+            
+            errorElement.style.display = 'none';
+            document.getElementById('display-username').textContent = userName;
+            
+            // Sembunyikan Login, Tampilkan Kuis
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'block';
+        }
+
+        // 2. FUNGSI UTAMA SUBMISI FORM
+        document.getElementById('quiz-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah form reload halaman
+            submitQuiz(this);
+        });
+
+        function submitQuiz(form) {
+            const statusElement = document.getElementById('submission-status');
+            statusElement.textContent = 'Mengirim data...';
+            
+            const totalQuestions = 50;
+            const mapel = 'IPS'; // Variabel baru untuk Mapel
+            
+            // Ambil data jawaban benar dari JSON
+            const correctAnswers = JSON.parse(document.getElementById('correct-answers').textContent);
+            
+            let benar = 0; // Jawaban benar
+            let salah = 0; // Jawaban salah (termasuk kosong)
+            
+            // Dapatkan waktu kirim
+            const submitTime = new Date().toLocaleString('id-ID');
+            const dataRows = []; 
+
+            // Loop 50 pertanyaan
+            for (let i = 1; i <= totalQuestions; i++) {
+                const qName = 'q' + i;
+                const userAnswerElement = form.querySelector(`input[name="${qName}"]:checked`);
+                
+                const userAnswer = userAnswerElement ? userAnswerElement.value : 'kosong';
+                const correctAnswer = correctAnswers[qName];
+                
+                const isCorrect = (userAnswer === correctAnswer) ? 1 : 0;
+                
+                if (isCorrect === 1) {
+                    benar++;
+                } else {
+                    salah++;
+                }
+
+                // Baris ini HANYA untuk detail per soal (tidak dipakai di PHP, tapi bagus sebagai backup)
+                dataRows.push(`${qName};${userAnswer};${correctAnswer};${isCorrect}`);
+            }
+            
+            // Hitung Skor (Skor dihitung dari BENAR * 2, karena 50 soal)
+            const score = benar * 2; 
+
+            // --- PERUBAHAN FORMAT DATA UNTUK MENDUKUNG KOLOM MBah ---
+            
+            // Gabungkan semua data utama ke dalam format string JSON
+            const submissionData = {
+                waktu: submitTime,
+                mapel: mapel,
+                nama: userName,
+                // Kita asumsikan username sama dengan nama, jika Mbah punya kolom username terpisah,
+                // kolom ini bisa diisi dengan input terpisah di HTML.
+                username: userName, 
+                skor: score,
+                salah: salah,
+                benar: benar
+            };
+            
+            // ** FUNGSI KIRIM KE SERVER (FETCH API) **
+            fetch(SUBMIT_URL, {
+                method: 'POST',
+                headers: {
+                    // Mengirim sebagai JSON lebih standar dan mudah di-handle PHP
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify(submissionData) // Mengubah objek JS menjadi string JSON
+            })
+           .then(response => {
+                if (response.ok) {
+                    statusElement.style.color = 'green';
+                    statusElement.textContent = `Jawaban berhasil dikirim! Skor: ${score}/50`;
+                    
+                    // Tampilkan Hasil Akhir di layar result
+                    document.getElementById('final-username').textContent = userName;
+                    document.getElementById('final-score').textContent = score;
+                    document.getElementById('quiz-screen').style.display = 'none';
+                    document.getElementById('result-screen').style.display = 'block';
+
+                } else {
+                    // Jika server tidak merespons OK (misalnya 404, 500)
+                    statusElement.style.color = 'red';
+                    statusElement.textContent = 'Gagal mengirim data. Server save_score.php error atau tidak menerima data.';
+                    console.error('Server error:', response.status, response.statusText);
+                }
+            })
+            .catch(error => {
+                // Jika gagal koneksi (misalnya URL salah)
+                statusElement.style.color = 'red';
+                statusElement.textContent = `Error Koneksi: ${error.message}. Cek apakah save_score.php sudah benar.`;
+                console.error('Fetch error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
